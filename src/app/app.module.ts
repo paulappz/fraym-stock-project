@@ -10,12 +10,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartComponent } from './chart/chart.component';
+import { UrlInterceptor, LoaderInterceptor } from './helpers';
+import { StockDataService } from './services';
+import { AlertComponent } from './directives';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChartComponent
+    ChartComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,9 @@ import { ChartComponent } from './chart/chart.component';
     MatDialogModule
   ],
   providers: [
+    StockDataService,
+    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
