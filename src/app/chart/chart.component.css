@@ -1,0 +1,61 @@
+
+  :host {
+    display: block;
+    padding: 32px;
+    border-radius: 8px;
+  }
+  .header {
+    height: 50px;
+  }
+  
+  .content {
+    /* background-color: #e3ffe3; */
+    height: 400px;
+
+  }
+  .footer {
+    height: 50px;
+
+  }
+
+mat-radio-button {
+    text-overflow: ellipsis;
+    min-width: 0;
+    border: 0px outset #fff;
+    border-radius: 4px;
+    background-color: skyblue;
+    height: 40px;
+    padding: 10px;
+  }
+
+  mat-radio-outer-circle {
+    box-sizing: border-box;
+    display: block;
+    height: 50px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: border-color ease 280ms;
+    width: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px !important;
+}
+
+mat-radio-container {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+::ng-deep .mat-radio-outer-circle {
+    border-width: 0px !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  opacity: 0.5 !important;     /*click effect color change*/
+   background-color: blue !important;
+}
