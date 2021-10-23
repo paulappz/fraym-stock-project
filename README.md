@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # FraymStocksProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
@@ -26,6 +25,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-=======
-# fraym-stock-project
->>>>>>> 641aae5941a65804efc931dd211f9ab72b9d343e
