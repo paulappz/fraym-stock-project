@@ -2,15 +2,13 @@
   :host {
     display: block;
     padding: 32px; 
-    border-radius: 8px;
   }
   .header {
     height: 50px;
   }
   
   .content {
-    /* background-color: #e3ffe3; */
-    height: 400px;
+    height: 500px;
 
   }
   .footer {

@@ -34,7 +34,7 @@ export class ChartComponent implements OnInit {
     { id: 4, company: 'General Electric', link: "GE.json" },
   ];
 
-  selectedMarket = this.markets[0].id;
+  selectedMarket: any;
 
   constructor(
     public stockDataService: StockDataService,
@@ -42,8 +42,8 @@ export class ChartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.selectedMarket)
-    // this.fetchData('/AAPL.json')
+    this.fetchData(this.markets[0].link)
+    this.selectedMarket = this.markets[0].id;
   }
 
   fetchData(apiJson: any) {
