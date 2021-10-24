@@ -2,16 +2,18 @@
     gdRows.lt-md="auto auto auto auto">
 
     <div class="header" gdArea="header">
+
     </div>
 
 
     <div class="side" gdArea="side" fxLayout="row wrap" gdRows="auto" gdGap="16px" fxLayoutGap="auto"
         fxLayoutAlign="space-between">
 
-        <mat-radio-button fxLayoutAlign="space-around" value="1">Markets A
-        </mat-radio-button>
-        <mat-radio-button fxLayoutAlign="space-around" value="1">Markets A
-        </mat-radio-button>
+        <label *ngFor="let market of markets">
+            <input [disabled]="loaderService.isLoading | async" type="radio" [(ngModel)]="selectedMarket" name="market"
+                value="{{market['id']}}" (change)="fetchData(market['link'])" />
+            <span>{{market["company"]}}</span>
+        </label>
 
     </div>
 

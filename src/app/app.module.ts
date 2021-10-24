@@ -11,15 +11,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartComponent } from './chart/chart.component';
 import { UrlInterceptor, LoaderInterceptor } from './helpers';
-import { StockDataService } from './services';
-import { AlertComponent } from './directives';
+import { StockDataService, LoaderService } from './services';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChartComponent,
-    AlertComponent
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +33,7 @@ import { AlertComponent } from './directives';
   ],
   providers: [
     StockDataService,
+    LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],

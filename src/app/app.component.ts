@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import {
+
+
+  LoaderService,
+} from './services';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +12,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fraym-stocks-project';
+
+  constructor(
+    public loaderService: LoaderService,
+
+  ) { }
 }
