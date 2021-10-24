@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import * as Highcharts from 'highcharts/highstock';
 
 import {
@@ -21,7 +21,8 @@ noData(Highcharts);
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  styleUrls: ['./chart.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartComponent implements OnInit {
   graphGenerated: Boolean = false;
@@ -39,11 +40,13 @@ export class ChartComponent implements OnInit {
   constructor(
     public stockDataService: StockDataService,
     public loaderService: LoaderService
-  ) { }
+  ) {
+    this.selectedMarket = this.markets[0].id;
+    this.fetchData(this.markets[0].link)
+  }
 
   ngOnInit() {
-    this.fetchData(this.markets[0].link)
-    this.selectedMarket = this.markets[0].id;
+
   }
 
   fetchData(apiJson: any) {

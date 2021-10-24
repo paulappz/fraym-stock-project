@@ -9,6 +9,6 @@
 .spinner-grow{
     width: 15rem;
     height: 15rem;
-    z-index: 4;
+    z-index: 9000;
 
 }

@@ -10,8 +10,8 @@
         fxLayoutAlign="space-between">
 
         <label *ngFor="let market of markets">
-            <input [disabled]="loaderService.isLoading | async" type="radio" [(ngModel)]="selectedMarket" checked
-                name="market" value="{{market['id']}}" (change)="fetchData(market['link'])" />
+            <input [disabled]="loaderService.isLoading | async" type="radio" [(ngModel)]="selectedMarket" name="market"
+                [value]="market['id']" (change)="fetchData(market['link'])" />
             <span>{{market["company"]}}</span>
         </label>
 
