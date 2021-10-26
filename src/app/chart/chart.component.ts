@@ -33,6 +33,10 @@ export class ChartComponent implements OnInit {
     { id: 2, company: 'American Express Co.', link: "AXP.json" },
     { id: 3, company: 'CVS Health Corp', link: "CVS.json" },
     { id: 4, company: 'General Electric', link: "GE.json" },
+    { id: 5, company: 'Facebook Inc', link: "FB.json" },
+    { id: 6, company: 'AMAG Pharmaceuticals Inc', link: "AMAG.json" },
+    { id: 7, company: 'Twitter Inc', link: "TWTR.json" },
+    { id: 8, company: 'Alphabet Inc', link: "GOOG.json" },
   ];
 
   selectedMarket: any;
@@ -62,12 +66,14 @@ export class ChartComponent implements OnInit {
 
         // Set Start Date for Graph:
         pointStartDate = stockData.dataset.oldest_available_date.replace(/-/g, '/');
+
         startYear = parseFloat(pointStartDate.substring(0, 4));
-        startMonth = parseFloat(pointStartDate.substring(5, 7)) - 1;
+        startMonth = parseFloat(pointStartDate.substring(5, 7));
         startDay = parseFloat(pointStartDate.substring(8.9));
 
         // Set End Date for Graph:
         pointEndDate = stockData.dataset.newest_available_date.replace(/-/g, '/');
+        console.log(pointEndDate)
 
         // Initialize high/low/mid arrays
         let highArray: any = [];
@@ -77,21 +83,23 @@ export class ChartComponent implements OnInit {
         stockData.dataset.data.forEach((arrayItem: any) => {
           // Initialize temp array 
           let initArray = arrayItem;
-
+          let dateFormat = new Date(initArray[0].replace(/-/g, '/')).getTime();
           // Push High/Low value into respective arrays
-          highArray.push(initArray[2]);
-          lowArray.push(initArray[3]);
+          highArray.push([dateFormat, initArray[2]]);
+
+          lowArray.push([dateFormat, initArray[3]]);
 
           // Calculate Avg value and push into midArray
           let midValue = (arrayItem[2] + arrayItem[3]) / 2
-          midArray.push(midValue);
+          midArray.push([dateFormat, midValue]);
         });
 
+        console.log(highArray);
         // Set options for graph
         this.options = {
           rangeSelector: {
             enabled: true,
-            selected: 3
+            // selected: 3
           },
           tooltip: {
             valueDecimals: 2,
@@ -103,12 +111,9 @@ export class ChartComponent implements OnInit {
           },
           xAxis: {
             type: 'datetime',
-            min: new Date(pointStartDate).getTime(),
-            max: new Date(pointEndDate).getTime()
           },
           plotOptions: {
             series: {
-              pointStart: Date.UTC(startYear, startMonth, startDay),
               pointInterval: 24 * 3600 * 1000, // one day
             }
           },
@@ -116,17 +121,17 @@ export class ChartComponent implements OnInit {
             {
               name: 'High',
               step: 'left',
-              data: highArray
+              data: highArray.reverse()
             },
             {
               name: 'Mid',
               step: 'center',
-              data: midArray
+              data: midArray.reverse()
             },
             {
               name: 'Low',
               step: 'right',
-              data: lowArray
+              data: lowArray.reverse()
             }
           ]
         }
